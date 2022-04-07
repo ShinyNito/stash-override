@@ -1,0 +1,21 @@
+name: Build override
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 21 * * *"
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - "**/README.md"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v3.1.1
+        
+      - name: install yaml
+        run: |
+          pip install ruamel.yaml
+      
