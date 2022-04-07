@@ -142,7 +142,7 @@ def generate_yaml_doc(filename, r, source):
                 }
             py_object["dns"]['fake-ip-filter'] = general["fake-ip-filter"]
     file = open(filename, 'w', encoding='utf-8')
-    file.write("# modify from " + source)
+    file.write("# modify from " + source + "\n")
     if name != "":
         file.write("name: " + name)
     if desc != "":
