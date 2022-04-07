@@ -18,24 +18,25 @@ jobs:
       - name: install yaml
         run: |
           pip install ruamel.yaml
+          ls -l
           
-      - name: run
-        run: |
-          python3 ./convert.py
+#       - name: run
+#         run: |
+#           python3 ./convert.py
           
-      - name: Get current date
-        id: date
-        run: echo "::set-output name=today::$(date +'%Y-%m-%d')"
+#       - name: Get current date
+#         id: date
+#         run: echo "::set-output name=today::$(date +'%Y-%m-%d')"
           
-      - name: Git push assets to "release" branch
-        if: ${{ env.NeedToSync }}
-        run: |
-          git init
-          git config --local user.name "github-actions[bot]"
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout -b release
-          git add .
-          git commit -m "${{ steps.date.outputs.today }}"
-          git remote add publish "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
-          git push -f publish release
+#       - name: Git push assets to "release" branch
+#         if: ${{ env.NeedToSync }}
+#         run: |
+#           git init
+#           git config --local user.name "github-actions[bot]"
+#           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+#           git checkout -b release
+#           git add .
+#           git commit -m "${{ steps.date.outputs.today }}"
+#           git remote add publish "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+#           git push -f publish release
       
