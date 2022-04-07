@@ -164,3 +164,4 @@ for (key, u) in urls.items():
     else:
         r = response.read().decode('utf-8')
         generate_yaml_doc( "./" +key + ".stoverride", r)
+        print("https://raw.githubusercontent.com/ShinyNito/stash-override/main/" + key + ".stoverride" + "\n")
