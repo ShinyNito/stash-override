@@ -164,6 +164,12 @@ http:
       type: response
       require-body: true
       timeout: 120
+  rewrite:
+    - ^https?:\/\/haojia\.m\.smzdm\.com\/detail_modul\/other_modul - reject
+    - ^https?:\/\/haojia\.m\.smzdm\.com\/detail_modul\/user_related_modul - reject
+    - ^https?:\/\/haojia\.m\.smzdm\.com\/detail_modul\/wiki_related_modul - reject
+    - ^https?:\/\/www\.zhihu\.com\/appview\/(p|v2\/answer|zvideo)\/.*entry=(preload-topstory|preload-search|preload-subscription)
+      - reject
 script-providers:
   BiliBili_开屏去广告:
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/bilibili/bilibili_plus.js
