@@ -58,7 +58,8 @@ def getRewrite(string):
                      string, flags=re.MULTILINE)
     if list != None:
         for l in list.group().split("\n"):
-            if l != "": rewrite.append(l.replace('"', ''))
+            if (l != "") & (re.search(r"^#.*", l) == None):
+                 rewrite.append(l.replace('"', ''))
     return rewrite
 
 
