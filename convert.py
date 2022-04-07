@@ -1,9 +1,6 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
-from cmath import log
-from ctypes.wintypes import PINT
-from distutils.log import Log
 from http.client import responses
 import sys
 import ruamel.yaml
@@ -11,14 +8,19 @@ import urllib.request
 import re
 
 
+def checkSection(string):
+    return re.search(r"^\[.*\]$", string) != None
+
 def getScript(string):
     Script = {}
-    list = re.search(r"(?<=\[(Script)\]\s)([^\[])*",
+    list = re.search(r"(?<=\[(Script)\]\s)(.|\s)*",
                      string, flags=re.MULTILINE)
     if list != None:
         list = (list.group().split("\n"))
         for i in list:
             if i != "":
+                if checkSection(i):
+                    break
                 i = i.replace(" ", "")
                 name = re.search(
                     r"^.+?(?==)", i.replace(" ", ""), flags=re.MULTILINE)
@@ -54,10 +56,12 @@ def getGeneral(string):
 
 def getRewrite(string):
     rewrite = []
-    list = re.search(r"(?<=\[(URL Rewrite)\]\s)([^\[])*",
+    list = re.search(r"(?<=\[(URL Rewrite)\]\s)(.|\s)*",
                      string, flags=re.MULTILINE)
     if list != None:
         for l in list.group().split("\n"):
+            if checkSection(l):
+                break
             if (l != "") & (re.search(r"^#.*", l) == None):
                  rewrite.append(l.replace('"', ''))
     return rewrite
@@ -65,7 +69,7 @@ def getRewrite(string):
 
 def getMITM(string):
     mitm = []
-    list = re.search(r"(?<=\[(MITM)\]\s).*$", string, flags=re.MULTILINE)
+    list = re.search(r"(?<=\[(MITM)\]\s)(.|\s)*", string, flags=re.MULTILINE)
     if list != None:
         l = list.group()
         l = l.replace(' ', '')
