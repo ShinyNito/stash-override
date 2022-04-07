@@ -149,7 +149,7 @@ def generate_yaml_doc(filename, r):
 
 
 urls = {
-    "weibo-ad": "https://raw.githubusercontent.com/zmqcherish/proxy-script/main/weibo.sgmodule"
+    "weibo-ad": "https://raw.githubusercontent.com/zmqcherish/proxy-script/main/weibo.sgmodule",
     "jd_price2": "https://raw.githubusercontent.com/githubdulong/Script/master/jd_price2.sgmodule",
     "xiaohongshu.ad": "https://raw.githubusercontent.com/chouchoui/QuanX/master/Scripts/xiaohongshu/xiaohongshu.ad.sgmodule",
     "weibo": "https://raw.githubusercontent.com/ShinyNito/Rule-Snippet/main/weibo.sgmodule",
