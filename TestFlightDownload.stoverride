@@ -1,4 +1,5 @@
-# modify from https://raw.githubusercontent.com/NobyDa/Script/master/Surge/Module/TestFlightDownload.sgmodulename: TestFlight区域限制解除
+# modify from https://raw.githubusercontent.com/NobyDa/Script/master/Surge/Module/TestFlightDownload.sgmodule
+name: TestFlight区域限制解除
 desc: 该模块适用于更新TestFlight App时, 提示"APP不可用"问题.
 
 http:
