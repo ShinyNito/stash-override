@@ -88,15 +88,19 @@ def getMITM(string):
     if list != None:
         l = list.group()
         l = l.replace(' ', '')
-        l = re.search(r"(?<=%INSERT%|%APPEND%).*", l)
-        if l != None:
-            l = l.group().split(',')
+        l1 = re.search(r"(?<=%INSERT%|%APPEND%).*", l)
+        if l1 != None:
+            l = l1.group().split(',')
+        else: 
+            l = re.search(r"(?<==).*", l)
+            if l != None:
+                l = l.group().split(',')
         for v in l:
             mitm.append(v)
     return mitm
 
 
-def generate_yaml_doc(filename, r):
+def generate_yaml_doc(filename, r, source):
     name = getName(r)
     desc = getDesc(r)
     mtim = getMITM(r)
@@ -138,6 +142,7 @@ def generate_yaml_doc(filename, r):
                 }
             py_object["dns"]['fake-ip-filter'] = general["fake-ip-filter"]
     file = open(filename, 'w', encoding='utf-8')
+    file.write("# modify from " + source)
     if name != "":
         file.write("name: " + name)
     if desc != "":
@@ -149,7 +154,7 @@ def generate_yaml_doc(filename, r):
 
 
 urls = {
-    "weibo-ad": "https://raw.githubusercontent.com/zmqcherish/proxy-script/main/weibo.sgmodule",
+    # "weibo-ad": "https://raw.githubusercontent.com/zmqcherish/proxy-script/main/weibo.sgmodule", 不可用
     "jd_price2": "https://raw.githubusercontent.com/githubdulong/Script/master/jd_price2.sgmodule",
     "xiaohongshu.ad": "https://raw.githubusercontent.com/chouchoui/QuanX/master/Scripts/xiaohongshu/xiaohongshu.ad.sgmodule",
     "weibo": "https://raw.githubusercontent.com/ShinyNito/Rule-Snippet/main/weibo.sgmodule",
@@ -167,5 +172,5 @@ for (key, u) in urls.items():
         print('获取错误')
     else:
         r = response.read().decode('utf-8')
-        generate_yaml_doc( "./" +key + ".stoverride", r)
+        generate_yaml_doc( "./" +key + ".stoverride", r, u)
         print("https://raw.githubusercontent.com/ShinyNito/stash-override/main/" + key + ".stoverride" + "\n")
