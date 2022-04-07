@@ -1,4 +1,4 @@
-name: Bilibili
+# modify from https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/bilibili/bilibili_plus.sgmodulename: Bilibili
 desc: BiliBili去广告
 
 http:

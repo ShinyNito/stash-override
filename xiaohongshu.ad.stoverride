@@ -1,4 +1,4 @@
-name: 小红书广告
+# modify from https://raw.githubusercontent.com/chouchoui/QuanX/master/Scripts/xiaohongshu/xiaohongshu.ad.sgmodulename: 小红书广告
 desc: 移除小红书广告
 
 http:
