@@ -1,5 +1,28 @@
 http:
-  mitm: []
+  mitm:
+    - 103.41.167.226
+    - 103.41.167.234
+    - 103.41.167.235
+    - 103.41.167.236
+    - api.m.jd.com
+    - api.zhihu.com
+    - app-api.smzdm.com
+    - app.bilibili.com
+    - appcloud2.zhihu.com
+    - baike-api.smzdm.com
+    - capis*.didapinche.com
+    - cmsapi.dmall.com
+    - fmapp.chinafamilymart.com.cn
+    - haojia-api.smzdm.com
+    - haojia.m.smzdm.com
+    - hd.mina.mi.com
+    - homepage-api.smzdm.com
+    - mi.gdt.qq.com
+    - s-api.smzdm.com
+    - wmapi.meituan.com
+    - www.zhihu.com
+    - zhiyou.m.smzdm.com
+    - zhuanlan.zhihu.com
   script:
     - match: ^https?:\/\/app\.bilibili\.com\/x\/v2\/splash\/list
       name: BiliBili_开屏去广告
