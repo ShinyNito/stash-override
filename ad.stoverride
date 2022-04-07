@@ -1,3 +1,6 @@
+name:app去广告
+desc:使用前必看:请先用浏览器打开本模块的url链接查看支持的app/注意事项/更新日志
+
 http:
   mitm:
     - magev6.if.qidian.com

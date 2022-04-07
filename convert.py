@@ -54,6 +54,19 @@ def getGeneral(string):
         return []
     return general
 
+
+def getName(string):
+    list = re.search(r"(?<=^#!name=).*\n", string, flags=re.MULTILINE)
+    if list != None:
+        return list.group()
+    return ""
+
+def getDesc(string):
+    list = re.search(r"(?<=^#!desc=).*\n", string, flags=re.MULTILINE)
+    if list != None:
+        return list.group()
+    return ""
+
 def getRewrite(string):
     rewrite = []
     list = re.search(r"(?<=\[(URL Rewrite)\]\s)(.|\s)*",
@@ -84,6 +97,8 @@ def getMITM(string):
 
 
 def generate_yaml_doc(filename, r):
+    name = getName(r)
+    desc = getDesc(r)
     mtim = getMITM(r)
     general = getGeneral(r)
     if mtim == []:
@@ -123,6 +138,10 @@ def generate_yaml_doc(filename, r):
                 }
             py_object["dns"]['fake-ip-filter'] = general["fake-ip-filter"]
     file = open(filename, 'w', encoding='utf-8')
+    if name != "":
+        file.write("name:" + name)
+    if desc != "":
+        file.write("desc:" + desc + "\n")
     yaml = ruamel.yaml.YAML()
     yaml.indent(mapping=2, sequence=4, offset=2)
     yaml.dump(py_object, file)

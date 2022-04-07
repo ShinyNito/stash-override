@@ -1,3 +1,6 @@
+name:Bilibili
+desc:BiliBili去广告
+
 http:
   mitm:
     - app.bilibili.com
