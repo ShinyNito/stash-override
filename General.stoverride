@@ -17,24 +17,17 @@ http:
       require-body: true
       timeout: 120
   rewrite:
-    - '# Redirect Google Search Service'
     - ^https?:\/\/(www.)?(g|google)\.cn https://www.google.com 302
-    - '# Redirect Google Maps Service'
     - ^https?:\/\/(ditu|maps).google\.cn https://maps.google.com 302
-    - '# Redirect HTTP to HTTPS'
     - ^https?:\/\/(www.)?taobao\.com\/ https://taobao.com/ 302
     - ^https?:\/\/(www.)?jd\.com\/ https://www.jd.com/ 302
     - ^https?:\/\/(www.)?mi\.com\/ https://www.mi.com/ 302
     - ^https?:\/\/you\.163\.com\/ https://you.163.com/ 302
     - ^https?:\/\/(www.)?suning\.com\/ https://suning.com/ 302
     - ^https?:\/\/(www.)?yhd\.com\/ https://yhd.com/ 302
-    - '# Redirect False to True'
-    - '# > Firefox - www.firefox.com.cn'
     - ^https?:\/\/(www.)?firefox\.com\.cn\/(download\/)?$ https://www.mozilla.org/zh-CN/firefox/new/
       302
-    - '# > IGN China to IGN Global'
     - ^https?:\/\/(www.)?ign\.xn--fiqs8s\/ http://cn.ign.com/ccpref/us 302
-    - '# > Fake Website Made By C&J Marketing'
     - ^https?:\/\/(www.)?abbyychina\.com\/ https://www.abbyy.cn/ 302
     - ^https?:\/\/(www.)?alienskins\.cn\/ https://exposure.software/ 302
     - ^https?:\/\/(www.)?anydeskchina\.cn\/ https://anydesk.com/zhs 302
@@ -99,9 +92,7 @@ http:
     - ^https?:\/\/(www.)?xshellcn\.com\/ https://www.netsarang.com/zh/xshell/ 302
     - ^https?:\/\/(www.)?yuanchengxiezuo\.com\/ https://www.teamviewer.com/ 302
     - ^https?:\/\/(www.)?zbrushcn\.com\/ https://pixologic.com/ 302
-    - '# AbeamTV - api.abema.io'
     - ^https?:\/\/api\.abema\.io\/v\d\/ip\/check - reject
-    - '# bstar intl'
     - (^https?:\/\/app\.biliintl\.com\/(x\/)?(intl|dm|reply|history|v\d\/(fav|msgfeed)).+?)(&s_locale=zh-Hans_
 script-providers:
   bstar_login:
