@@ -139,9 +139,9 @@ def generate_yaml_doc(filename, r):
             py_object["dns"]['fake-ip-filter'] = general["fake-ip-filter"]
     file = open(filename, 'w', encoding='utf-8')
     if name != "":
-        file.write("name:" + name)
+        file.write("name: " + name)
     if desc != "":
-        file.write("desc:" + desc + "\n")
+        file.write("desc: " + desc + "\n")
     yaml = ruamel.yaml.YAML()
     yaml.indent(mapping=2, sequence=4, offset=2)
     yaml.dump(py_object, file)
