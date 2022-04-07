@@ -21,7 +21,7 @@ jobs:
           
       - name: run
         run: |
-          python3 convert.py
+          python3 ./convert.py
           
       - name: Get current date
         id: date
@@ -30,7 +30,6 @@ jobs:
       - name: Git push assets to "release" branch
         if: ${{ env.NeedToSync }}
         run: |
-          cd publish || exit 1
           git init
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
