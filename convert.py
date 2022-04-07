@@ -63,7 +63,9 @@ def getRewrite(string):
             if checkSection(l):
                 break
             if (l != "") & (re.search(r"^#.*", l) == None):
-                 rewrite.append(l.replace('"', ''))
+                if re.search(r'\s.*\$\d', l) != None:
+                    l =re.sub(r"\sheader$", " 302", l)
+                rewrite.append(l.replace('"', ''))
     return rewrite
 
 
@@ -128,9 +130,13 @@ def generate_yaml_doc(filename, r):
 
 
 urls = {
-    "./General.stoverride": "https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Module/General.sgmodule",
-    "./ad.stoverride": "https://raw.githubusercontent.com/app2smile/rules/master/module/ad.sgmodule",
-    "./AdvertisingScript.stoverride": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Surge/AdvertisingScript/AdvertisingScript.sgmodule"
+    "General": "https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Module/General.sgmodule",
+    "ad": "https://raw.githubusercontent.com/app2smile/rules/master/module/ad.sgmodule",
+    "AdvertisingScript": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Surge/AdvertisingScript/AdvertisingScript.sgmodule",
+    "bilibili_plus": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/bilibili/bilibili_plus.sgmodule",
+    "bilibili-test": "https://raw.githubusercontent.com/app2smile/rules/master/module/bilibili-test.sgmodule",
+    "TestFlightDownload": "https://raw.githubusercontent.com/NobyDa/Script/master/Surge/Module/TestFlightDownload.sgmodule",
+    "AdvertisingLite_Classical": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Surge/AdvertisingLite/AdvertisingLite_Classical.sgmodule"
 }
 for (key, u) in urls.items():
     response = urllib.request.urlopen(u)
@@ -138,4 +144,4 @@ for (key, u) in urls.items():
         print('获取错误')
     else:
         r = response.read().decode('utf-8')
-        generate_yaml_doc(key, r)
+        generate_yaml_doc( "./" +key + ".stoverride", r)
