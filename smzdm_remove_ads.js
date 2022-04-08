@@ -6,6 +6,7 @@ obj.data.forEach((element) => {
   element.unix_end_date = "1924358399";
   element.is_show_ad = "0";
 });
+let response = null;
 response = { body: JSON.stringify(obj) };
 // let body = response.body;
 $done({ response });
