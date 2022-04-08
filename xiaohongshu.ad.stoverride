@@ -10,12 +10,12 @@ http:
       name: '#小红书Config'
       type: response
       require-body: true
-      timeout: 120
+      timeout: 20
     - match: ^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v2\/system_service\/splash_config
       name: 小红书开屏广告
       type: response
       require-body: true
-      timeout: 120
+      timeout: 20
 script-providers:
   '#小红书Config':
     url: https://raw.githubusercontent.com/chouchoui/QuanX/master/Scripts/xiaohongshu/xiaohongshu.ad.js

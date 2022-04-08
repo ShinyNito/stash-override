@@ -13,37 +13,37 @@ http:
       name: BiliBili_推荐去广告
       type: response
       require-body: true
-      timeout: 120
+      timeout: 20
     - match: ^https?:\/\/api\.bilibili\.com\/pgc\/page\/bangumi
       name: BiliBili_追番去广告
       type: response
       require-body: true
-      timeout: 120
+      timeout: 20
     - match: ^https?:\/\/api\.live\.bilibili\.com\/xlive\/app-room\/v1\/index\/getInfoByRoom
       name: BiliBili_直播去广告
       type: response
       require-body: true
-      timeout: 120
+      timeout: 20
     - match: ^https?:\/\/api\.vc\.bilibili\.com\/dynamic_svr\/v1\/dynamic_svr\/dynamic_(history|new)\?
       name: BiliBili_动态去广告
       type: response
       require-body: true
-      timeout: 120
+      timeout: 20
     - match: ^https?:\/\/app\.bilibili\.com\/x\/v2\/splash\/list
       name: BiliBili_开屏去广告
       type: response
       require-body: true
-      timeout: 120
+      timeout: 20
     - match: ^https?:\/\/app\.bilibili\.com\/x\/resource\/show\/tab
       name: BiliBili_标签页处理
       type: response
       require-body: true
-      timeout: 120
+      timeout: 20
     - match: ^https?:\/\/app\.bilibili\.com\/x\/v2\/account\/mine
       name: BiliBili_我的页面处理
       type: response
       require-body: true
-      timeout: 120
+      timeout: 20
   rewrite:
     - ^https?:\/\/api\.vc\.bilibili\.com\/search_svr\/v\d\/Search\/recommend_words
       - reject

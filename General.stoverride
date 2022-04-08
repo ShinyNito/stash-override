@@ -14,12 +14,12 @@ http:
       name: bstar_login
       type: request
       require-body: true
-      timeout: 120
+      timeout: 20
     - match: ^https?:\/\/app\.biliintl\.com\/(intl\/gateway\/v\d\/app\/data\/report\/heartbeat\/mobile|x\/(history|reply)/v\d/add)
       name: bstar_play
       type: request
       require-body: true
-      timeout: 120
+      timeout: 20
   rewrite:
     - ^https?:\/\/(www.)?(g|google)\.cn https://www.google.com 302
     - ^https?:\/\/(ditu|maps).google\.cn https://maps.google.com 302

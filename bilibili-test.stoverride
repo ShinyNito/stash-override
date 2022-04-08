@@ -11,12 +11,12 @@ http:
       name: bili-json
       type: response
       require-body: true
-      timeout: 120
+      timeout: 20
     - match: ^https:\/\/app\.bilibili\.com\/bilibili\.app\.(view\.v1\.View\/View|dynamic\.v2\.Dynamic\/DynAll)$
       name: bili-proto
       type: response
       require-body: true
-      timeout: 120
+      timeout: 20
 script-providers:
   bili-json:
     url: https://raw.githubusercontent.com/app2smile/rules/master/js/bilibili-json.js

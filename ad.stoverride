@@ -19,7 +19,7 @@ http:
       name: 去广告
       type: response
       require-body: true
-      timeout: 120
+      timeout: 20
 script-providers:
   去广告:
     url: https://raw.githubusercontent.com/app2smile/rules/master/js/ad.js
