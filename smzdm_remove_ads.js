@@ -1,3 +1,4 @@
+let response = null;
 let obj = JSON.parse($response.body);
 obj.data.forEach((element) => {
   element.start_date = "2030-12-24 00:00:00";
@@ -6,5 +7,10 @@ obj.data.forEach((element) => {
   element.unix_end_date = "1924358399";
   element.is_show_ad = "0";
 });
-$done({ body: JSON.stringify(obj) });
+response = { body: JSON.stringify(obj) };
+ if (response) {
+    $done(response);
+  } else {
+    $done();
+  }
 console.log(JSON.stringify(response));
