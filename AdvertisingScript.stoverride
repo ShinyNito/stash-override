@@ -1,3 +1,4 @@
+# modify from https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Surge/AdvertisingScript/AdvertisingScript_Classical.sgmodule
 name: 脚本去广告
 desc: 最后更新时间 2022-03-04 16:25:59
 
@@ -168,11 +169,27 @@ http:
       require-body: true
       timeout: 120
   rewrite:
+    - ^https?:\/\/api\.zhihu\.com/moments/hybrid\? - reject
+    - ^https?:\/\/api\.zhihu\.com\/(notifications\/v3\/count|v3\/package|me\/guides|drama\/living-info|ad|fringe|commercial|market\/popovers|.*featured-comment-ad)
+      - reject
+    - ^https?:\/\/api\.zhihu\.com\/ab\/api\/v1\/products\/zhihu\/platforms\/ios\/config
+      - reject
+    - ^https?:\/\/api\.zhihu\.com\/brand\/question\/\d+/card\? - reject
+    - ^https?:\/\/api\.zhihu\.com\/moments\/recent - reject
+    - ^https?:\/\/api\.zhihu\.com\/moments\/tab_v2 - reject
+    - ^https?:\/\/api\.zhihu\.com\/people\/self\/new_user_card - reject
     - ^https?:\/\/haojia\.m\.smzdm\.com\/detail_modul\/other_modul - reject
     - ^https?:\/\/haojia\.m\.smzdm\.com\/detail_modul\/user_related_modul - reject
     - ^https?:\/\/haojia\.m\.smzdm\.com\/detail_modul\/wiki_related_modul - reject
+    - ^https?:\/\/www\.zhihu\.com\/api\/v4/(questions|anwsers)\/\d+/related-readings
+      - reject
+    - ^https?:\/\/www\.zhihu\.com\/api\/v4\/answers\/\d+\/recommendations - reject
+    - ^https?:\/\/www\.zhihu\.com\/api\/v4\/hot_recommendation - reject
+    - ^https?:\/\/www\.zhihu\.com\/api\/v\d+\/brand\/question/\d+/card\? - reject
     - ^https?:\/\/www\.zhihu\.com\/appview\/(p|v2\/answer|zvideo)\/.*entry=(preload-topstory|preload-search|preload-subscription)
       - reject
+    - ^https?:\/\/www\.zhihu\.com\/commercial_api\/banners_v3\/mobile_banner - reject
+    - ^https?:\/\/zhuanlan\.zhihu\.com\/api\/articles\/\d+\/recommendation - reject
 script-providers:
   BiliBili_开屏去广告:
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/bilibili/bilibili_plus.js
