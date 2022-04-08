@@ -124,7 +124,7 @@ def generate_yaml_doc(filename, r, source):
                     "name": key,
                     "type": typeTable[value['type']],
                     "require-body": int(value["requires-body"]) == 1,
-                    "timeout": 120
+                    "timeout": 20
                 })
                 scriptProviders[key] = {
                     "url": value["script-path"], "interval": 86400}
