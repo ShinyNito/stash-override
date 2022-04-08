@@ -7,4 +7,5 @@ obj.data.forEach((element) => {
   element.is_show_ad = "0";
 });
 response = { body: JSON.stringify(obj) };
-$done(response);
+let body = response.body;
+$done({ body });
