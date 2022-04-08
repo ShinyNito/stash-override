@@ -1,5 +1,4 @@
 let obj = JSON.parse($response.body);
-console.log(obj, "test smzdm");
 obj.data.forEach((element) => {
   element.start_date = "2030-12-24 00:00:00";
   element.end_date = "2030-12-24 23:59:59";
@@ -8,6 +7,6 @@ obj.data.forEach((element) => {
   element.is_show_ad = "0";
 });
 response = { body: JSON.stringify(obj) };
-let body = response.body;
-$done({ body });
-console.log(body);
+// let body = response.body;
+$done({ response });
+console.log(response);
