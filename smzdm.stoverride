@@ -58,7 +58,7 @@ http:
     - ^https?:\/\/haojia\.m\.smzdm\.com\/detail_modul\/wiki_related_modul - reject
 script-providers:
   什么值得买_开屏去广告:
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/smzdm/smzdm_remove_ads.js
+    url: https://raw.githubusercontent.com/ShinyNito/stash-override/main/smzdm_remove_ads.js
     interval: 86400
   什么值得买_首页去广告:
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/smzdm/smzdm_remove_ads.js
