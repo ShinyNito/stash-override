@@ -8,10 +8,11 @@ obj.data.forEach((element) => {
   element.is_show_ad = "0";
 });
 response = { body: JSON.stringify(obj) };
+console.log(JSON.stringify(response));
  if (response) {
     $done(response);
   } else {
-    $done();
+    $done({});
   }
 
-console.log(JSON.stringify(response));
+
