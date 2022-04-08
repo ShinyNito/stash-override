@@ -9,4 +9,4 @@ obj.data.forEach((element) => {
 response = { body: JSON.stringify(obj) };
 // let body = response.body;
 $done({ response });
-console.log(response);
+console.log(JSON.stringify(response));
