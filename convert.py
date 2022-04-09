@@ -11,6 +11,9 @@ import re
 def checkSection(string):
     return re.search(r"^\[.*\]$", string) != None
 
+def checkAnnotation(string):
+    return re.search(r"^(\s)?#", string)  != None
+
 def getScript(string):
     Script = {}
     list = re.search(r"(?<=\[(Script)\]\s)(.|\s)*",
@@ -20,6 +23,8 @@ def getScript(string):
         for i in list:
             if i != "":
                 if checkSection(i):
+                    break
+                if checkAnnotation(i):
                     break
                 i = i.replace(" ", "")
                 name = re.search(
@@ -74,6 +79,8 @@ def getRewrite(string):
     if list != None:
         for l in list.group().split("\n"):
             if checkSection(l):
+                break
+            if checkAnnotation(l):
                 break
             if (l != "") & (re.search(r"^#.*", l) == None):
                 if re.search(r'\s.*\$\d', l) != None:
