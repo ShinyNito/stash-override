@@ -5,3 +5,13 @@ desc: 移除小红书广告
 http:
   mitm:
     - edith.xiaohongshu.com
+  script:
+    - match: ^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v2\/system_service\/splash_config
+      name: 小红书开屏广告
+      type: response
+      require-body: true
+      timeout: 20
+script-providers:
+  小红书开屏广告:
+    url: https://raw.githubusercontent.com/chouchoui/QuanX/master/Scripts/xiaohongshu/xiaohongshu.ad.js
+    interval: 86400
