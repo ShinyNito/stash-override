@@ -25,7 +25,7 @@ def getScript(string):
                 if checkSection(i):
                     break
                 if checkAnnotation(i):
-                    break
+                    continue
                 i = i.replace(" ", "")
                 name = re.search(
                     r"^.+?(?==)", i.replace(" ", ""), flags=re.MULTILINE)
@@ -162,16 +162,16 @@ def generate_yaml_doc(filename, r, source):
 
 urls = {
     # "weibo-ad": "https://raw.githubusercontent.com/zmqcherish/proxy-script/main/weibo.sgmodule", 不可用
-    "jd_price2": "https://raw.githubusercontent.com/githubdulong/Script/master/jd_price2.sgmodule",
+    # "jd_price2": "https://raw.githubusercontent.com/githubdulong/Script/master/jd_price2.sgmodule",
     "xiaohongshu.ad": "https://raw.githubusercontent.com/chouchoui/QuanX/master/Scripts/xiaohongshu/xiaohongshu.ad.sgmodule",
-    "weibo": "https://raw.githubusercontent.com/ShinyNito/Rule-Snippet/main/weibo.sgmodule",
-    "General": "https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Module/General.sgmodule",
-    "ad": "https://raw.githubusercontent.com/app2smile/rules/master/module/ad.sgmodule",
-    "AdvertisingScript": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Surge/AdvertisingScript/AdvertisingScript_Classical.sgmodule",
-    "bilibili_plus": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/bilibili/bilibili_plus.sgmodule",
-    "bilibili-test": "https://raw.githubusercontent.com/app2smile/rules/master/module/bilibili-test.sgmodule",
-    "TestFlightDownload": "https://raw.githubusercontent.com/NobyDa/Script/master/Surge/Module/TestFlightDownload.sgmodule",
-    "AdvertisingLite_Classical": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Surge/AdvertisingLite/AdvertisingLite_Classical.sgmodule"
+    # "weibo": "https://raw.githubusercontent.com/ShinyNito/Rule-Snippet/main/weibo.sgmodule",
+    # "General": "https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Module/General.sgmodule",
+    # "ad": "https://raw.githubusercontent.com/app2smile/rules/master/module/ad.sgmodule",
+    # "AdvertisingScript": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Surge/AdvertisingScript/AdvertisingScript_Classical.sgmodule",
+    # "bilibili_plus": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/bilibili/bilibili_plus.sgmodule",
+    # "bilibili-test": "https://raw.githubusercontent.com/app2smile/rules/master/module/bilibili-test.sgmodule",
+    # "TestFlightDownload": "https://raw.githubusercontent.com/NobyDa/Script/master/Surge/Module/TestFlightDownload.sgmodule",
+    # "AdvertisingLite_Classical": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Surge/AdvertisingLite/AdvertisingLite_Classical.sgmodule"
 }
 for (key, u) in urls.items():
     response = urllib.request.urlopen(u)
