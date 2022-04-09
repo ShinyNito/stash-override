@@ -25,12 +25,18 @@ jobs:
       - name: Run Python
         run: |
           python3 convert.py
+      - name: Check if there is any new translations
+        id: verify_diff
+        run: |
+          git diff --quiet * || echo "::set-output name=new_translations_exist::true"
           
       - name: Get current date
         id: date
+        if: steps.verify_diff.outputs.new_translations_exist == 'true'
         run: echo "::set-output name=today::$(date +'%Y-%m-%d')"
           
       - name: Git commit
+        if: steps.verify_diff.outputs.new_translations_exist == 'true'
         run: |
           git init
           git config --local user.name "github-actions[bot]"
@@ -39,6 +45,7 @@ jobs:
           git commit -m "${{ steps.date.outputs.today }}"
       
       - name: Push changes
+        if: steps.verify_diff.outputs.new_translations_exist == 'true'
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
