@@ -44,15 +44,6 @@ http:
       type: response
       require-body: true
       timeout: 20
-  rewrite:
-    - ^https?:\/\/api\.vc\.bilibili\.com\/search_svr\/v\d\/Search\/recommend_words
-      - reject
-    - ^https?:\/\/api\.vc\.bilibili\.com\/topic_svr\/v1\/topic_svr - reject
-    - ^https?:\/\/api\.vc\.bilibili\.com\/dynamic_svr\/v1\/dynamic_svr\/mix_uplist
-      - reject
-    - ^https?:\/\/api\.bilibili\.com\/pgc\/season\/app\/related\/recommend\? - reject
-    - ^https?:\/\/manga\.bilibili\.com\/twirp\/comic\.v\d\.Comic\/Flash - reject
-    - ^https?:\/\/manga\.bilibili\.com\/twirp\/comic\.v\d\.Comic\/ListFlash - reject
 script-providers:
   BiliBili_推荐去广告:
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/bilibili/bilibili_plus.js
