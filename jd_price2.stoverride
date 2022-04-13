@@ -5,3 +5,13 @@ desc: 京东比价 更新时间 2022-02-22 09:09
 http:
   mitm:
     - api.m.jd.com
+  script:
+    - match: ^https?://api\.m\.jd\.com/client\.action\?functionId=(wareBusiness|serverConfig|basicConfig)
+      name: 京东比价
+      type: response
+      require-body: true
+      timeout: 20
+script-providers:
+  京东比价:
+    url: https://raw.githubusercontent.com/githubdulong/Script/master/jd_price.js
+    interval: 86400
