@@ -18,13 +18,13 @@ jobs:
       - name: install yaml
         run: |
           pip install ruamel.yaml
-          
+                    
+      - name: Checkout codebase
+        uses: actions/checkout@v3
+        
       - name: rm *.stoverride
         run: |
           rm -rf ./*.stoverride
-          
-      - name: Checkout codebase
-        uses: actions/checkout@v3
           
       - name: Run Python
         run: |
