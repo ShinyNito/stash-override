@@ -179,8 +179,7 @@ urls = {
     "General": "https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Module/General.sgmodule",
     "ad": "https://raw.githubusercontent.com/app2smile/rules/master/module/ad.sgmodule",
     "AdvertisingScript": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Surge/AdvertisingScript/AdvertisingScript_Classical.sgmodule",
-    "bilibili_plus": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/bilibili/bilibili_plus.sgmodule",
-    "bilibili-test": "https://raw.githubusercontent.com/app2smile/rules/master/module/bilibili-test.sgmodule",
+    "bilibili-test": "https://raw.githubusercontent.com/ShinyNito/Rule-Snippet/main/bilibili.sgmodule",
     "TestFlightDownload": "https://raw.githubusercontent.com/NobyDa/Script/master/Surge/Module/TestFlightDownload.sgmodule",
     "AdvertisingLite_Classical": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Surge/AdvertisingLite/AdvertisingLite_Classical.sgmodule"
 }
