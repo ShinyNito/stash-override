@@ -2,6 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 from http.client import responses
+from socket import timeout
 import sys
 import ruamel.yaml
 import urllib.request
@@ -30,22 +31,18 @@ def getScript(string):
                     continue
                 i = i.replace(" ", "")
                 name = re.search(
-                    r"[^/]+(?=\.js)", i.replace(" ", ""), flags=re.MULTILINE)
+                    r"^.+?(?==)", i.replace(" ", ""), flags=re.MULTILINE)
                 if name != None:
-                    name = name.group().replace(".", "-")
-                    scriptPath = re.search(r"(?<=script-path=).+.js", i.replace(" ", ""), flags=re.MULTILINE)
-                    if scriptPath!= None:
-                        if Script.get(name) == None:
-                            Script[name] = {"script-path": scriptPath.group(), "script": []}
-                        l = re.search(r"(?<==).+", i)
-                        if i != None:
-                            l = l.group().split(",")
-                            Script[name]['script'].append({})
-                            for v in l:
-                                value = re.search(r"(?<==).*", v)
-                                key = re.search(r"^.+?(?==)", v)
-                                if (value != None) & (key != None):
-                                    Script[name]['script'][-1][key.group()] = value.group()
+                    name = name.group()
+                    Script[name] = {}
+                    l = re.search(r"(?<==).+", i)
+                    if i != None:
+                        l = l.group().split(",")
+                        for v in l:
+                            value = re.search(r"(?<==).*", v)
+                            key = re.search(r"^.+?(?==)", v)
+                            if (value != None) & (key != None):
+                                Script[name][key.group()] = value.group()
         return Script
 
 
@@ -116,6 +113,7 @@ def getMITM(string):
     return mitm
 
 
+
 def generate_yaml_doc(filename, r, source):
     name = getName(r)
     desc = getDesc(r)
@@ -135,14 +133,16 @@ def generate_yaml_doc(filename, r, source):
     if Script != None:
         for (key, value) in Script.items():
             if value != {}:
-                for v in value['script']:
-                    newScript.append({
-                        "match": v["pattern"],
-                        "name": key,
-                        "type": typeTable[v['type']],
-                        "require-body": int(v["requires-body"]) == 1,
-                        "timeout": 20
-                    })
+                s = {
+                    "match": value["pattern"],
+                    "name": key,
+                    "type": typeTable[value['type']],
+                    "require-body": int(value["requires-body"]) == 1,
+                    "timeout": 20
+                }
+                if timeout in value:
+                    s['timeout'] = value['timeout']
+                newScript.append(s)
                 scriptProviders[key] = {
                     "url": value["script-path"], "interval": 86400}
     py_object = {'http': {'mitm': mtim}}
@@ -179,7 +179,7 @@ urls = {
     "General": "https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Module/General.sgmodule",
     "ad": "https://raw.githubusercontent.com/app2smile/rules/master/module/ad.sgmodule",
     "AdvertisingScript": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Surge/AdvertisingScript/AdvertisingScript_Classical.sgmodule",
-    "bilibili-test": "https://raw.githubusercontent.com/ShinyNito/Rule-Snippet/main/bilibili.sgmodule",
+    "bilibili_plus": "https://raw.githubusercontent.com/ShinyNito/Rule-Snippet/main/bilibili.sgmodule",
     "TestFlightDownload": "https://raw.githubusercontent.com/NobyDa/Script/master/Surge/Module/TestFlightDownload.sgmodule",
     "AdvertisingLite_Classical": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Surge/AdvertisingLite/AdvertisingLite_Classical.sgmodule"
 }
