@@ -7,11 +7,11 @@ http:
     - edith.xiaohongshu.com
   script:
     - match: ^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v2\/system_service\/splash_config
-      name: 小红书开屏广告
+      name: xiaohongshu-ad
       type: response
       require-body: true
       timeout: 20
 script-providers:
-  小红书开屏广告:
+  xiaohongshu-ad:
     url: https://raw.githubusercontent.com/chouchoui/QuanX/master/Scripts/xiaohongshu/xiaohongshu.ad.js
     interval: 86400

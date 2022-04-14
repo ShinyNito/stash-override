@@ -11,8 +11,10 @@ import re
 def checkSection(string):
     return re.search(r"^\[.*\]$", string) != None
 
+
 def checkAnnotation(string):
-    return re.search(r"^(\s)?#", string)  != None
+    return re.search(r"^(\s)?#", string) != None
+
 
 def getScript(string):
     Script = {}
@@ -28,32 +30,37 @@ def getScript(string):
                     continue
                 i = i.replace(" ", "")
                 name = re.search(
-                    r"^.+?(?==)", i.replace(" ", ""), flags=re.MULTILINE)
+                    r"[^/]+(?=\.js)", i.replace(" ", ""), flags=re.MULTILINE)
                 if name != None:
-                    name = name.group()
-                    Script[name] = {}
-                    l = re.search(r"(?<==).+", i)
-                    if i != None:
-                        l = l.group().split(",")
-                        for v in l:
-                            value = re.search(r"(?<==).*", v)
-                            key = re.search(r"^.+?(?==)", v)
-                            if (value != None) & (key != None):
-                                Script[name][key.group()] = value.group()
+                    name = name.group().replace(".", "-")
+                    scriptPath = re.search(r"(?<=script-path=).+.js", i.replace(" ", ""), flags=re.MULTILINE)
+                    if scriptPath!= None:
+                        if Script.get(name) == None:
+                            Script[name] = {"script-path": scriptPath.group(), "script": []}
+                        l = re.search(r"(?<==).+", i)
+                        if i != None:
+                            l = l.group().split(",")
+                            Script[name]['script'].append({})
+                            for v in l:
+                                value = re.search(r"(?<==).*", v)
+                                key = re.search(r"^.+?(?==)", v)
+                                if (value != None) & (key != None):
+                                    Script[name]['script'][-1][key.group()] = value.group()
         return Script
 
 
 def getGeneral(string):
     general = {"fake-ip-filter": []}
-    list = re.search(r"(?<=\[(General)\]\s)([^\[])*", string, flags=re.MULTILINE)
+    list = re.search(r"(?<=\[(General)\]\s)([^\[])*",
+                     string, flags=re.MULTILINE)
     if list != None:
-            rel = re.search(r"^always-real-ip.*", list.group(), flags=re.MULTILINE)
-            if rel != None:
-                r = re.search(r"(?<=(%INSERT%|%APPEND%)).*", rel.group())
-                if r != None:
-                    for i in r.group().split(","):
-                        general["fake-ip-filter"].append(i)
-            # if rel != None:
+        rel = re.search(r"^always-real-ip.*", list.group(), flags=re.MULTILINE)
+        if rel != None:
+            r = re.search(r"(?<=(%INSERT%|%APPEND%)).*", rel.group())
+            if r != None:
+                for i in r.group().split(","):
+                    general["fake-ip-filter"].append(i)
+        # if rel != None:
 
     else:
         return []
@@ -66,11 +73,13 @@ def getName(string):
         return list.group()
     return ""
 
+
 def getDesc(string):
     list = re.search(r"(?<=^#!desc=).*\n", string, flags=re.MULTILINE)
     if list != None:
         return list.group()
     return ""
+
 
 def getRewrite(string):
     rewrite = []
@@ -84,7 +93,7 @@ def getRewrite(string):
                 break
             if (l != "") & (re.search(r"^#.*", l) == None):
                 if re.search(r'\s.*\$\d', l) != None:
-                    l =re.sub(r"\sheader$", " 302", l)
+                    l = re.sub(r"\sheader$", " 302", l)
                 rewrite.append(l.replace('"', ''))
     return rewrite
 
@@ -98,7 +107,7 @@ def getMITM(string):
         l1 = re.search(r"(?<=%INSERT%|%APPEND%).*", l)
         if l1 != None:
             l = l1.group().split(',')
-        else: 
+        else:
             l = re.search(r"(?<==).*", l)
             if l != None:
                 l = l.group().split(',')
@@ -126,13 +135,14 @@ def generate_yaml_doc(filename, r, source):
     if Script != None:
         for (key, value) in Script.items():
             if value != {}:
-                newScript.append({
-                    "match": value["pattern"],
-                    "name": key,
-                    "type": typeTable[value['type']],
-                    "require-body": int(value["requires-body"]) == 1,
-                    "timeout": 20
-                })
+                for v in value['script']:
+                    newScript.append({
+                        "match": v["pattern"],
+                        "name": key,
+                        "type": typeTable[v['type']],
+                        "require-body": int(v["requires-body"]) == 1,
+                        "timeout": 20
+                    })
                 scriptProviders[key] = {
                     "url": value["script-path"], "interval": 86400}
     py_object = {'http': {'mitm': mtim}}
@@ -162,6 +172,7 @@ def generate_yaml_doc(filename, r, source):
 
 urls = {
     # "weibo-ad": "https://raw.githubusercontent.com/zmqcherish/proxy-script/main/weibo.sgmodule", 不可用
+    # "smzdm": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/smzdm/smzdm_remove_ads.sgmodule",
     "jd_price2": "https://raw.githubusercontent.com/githubdulong/Script/master/jd_price2.sgmodule",
     "xiaohongshu.ad": "https://raw.githubusercontent.com/chouchoui/QuanX/master/Scripts/xiaohongshu/xiaohongshu.ad.sgmodule",
     "weibo": "https://raw.githubusercontent.com/ShinyNito/Rule-Snippet/main/weibo.sgmodule",
@@ -179,5 +190,6 @@ for (key, u) in urls.items():
         print('获取错误')
     else:
         r = response.read().decode('utf-8')
-        generate_yaml_doc( "./" +key + ".stoverride", r, u)
-        print("https://raw.githubusercontent.com/ShinyNito/stash-override/main/" + key + ".stoverride" + "\n")
+        generate_yaml_doc("./" + key + ".stoverride", r, u)
+        print("https://raw.githubusercontent.com/ShinyNito/stash-override/main/" +
+              key + ".stoverride" + "\n")
