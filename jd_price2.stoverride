@@ -7,11 +7,11 @@ http:
     - api.m.jd.com
   script:
     - match: ^https?://api\.m\.jd\.com/client\.action\?functionId=(wareBusiness|serverConfig|basicConfig)
-      name: jd_price
+      name: 京东比价
       type: response
       require-body: true
       timeout: 20
 script-providers:
-  jd_price:
+  京东比价:
     url: https://raw.githubusercontent.com/githubdulong/Script/master/jd_price.js
     interval: 86400
