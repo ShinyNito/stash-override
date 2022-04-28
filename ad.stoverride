@@ -1,6 +1,6 @@
 # modify from https://raw.githubusercontent.com/app2smile/rules/master/module/ad.sgmodule
-name: app去广告
-desc: 使用前必看:请先用浏览器打开本模块的url链接查看支持的app/注意事项/更新日志
+name: app去广告(停止更新,本模块已拆分为各个独立模块)
+desc: 请根据自己需求打开url链接选择加载单个模块: https://github.com/app2smile/rules
 
 http:
   mitm:
