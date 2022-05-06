@@ -1,10 +1,9 @@
 # modify from https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Surge/AdvertisingLite/AdvertisingLite_Classical.sgmodule
 name: 复写去广告(严格版)
-desc: 最后更新时间 2022-03-28 02:12:10
+desc: 最后更新时间 2022-05-06 23:57:22
 
 http:
   mitm:
-    - '*-.amemv.com'
     - '*.atm.youku.com'
     - '*.beacon.qq.com'
     - '*.com1.z0.glb.clouddn.com'
@@ -142,7 +141,6 @@ http:
     - asp.cntv.myalicdn.com
     - ast.api.moji.com
     - atrace.chelaile.net.cn
-    - aweme.snssdk.com
     - b-api.ins.miaopai.com
     - b.zhuishushenqi.com
     - baichuan.baidu.com
@@ -225,7 +223,6 @@ http:
     - fm.fenqile.com
     - foodie-api.yiruikecorp.com
     - free.sinaimg.cn
-    - frontier.snssdk.com
     - fuss10.elemecdn.com
     - g.cdn.pengpengla.com
     - g.tbcdn.cn
@@ -539,7 +536,6 @@ http:
       - reject
     - ^https?:\/\/(s3plus|flowplus)\.meituan\.net\/v\d\/\w+\/linglong\/\w+\.(gif|jpg|mp4)
       - reject
-    - ^https?:\/\/.+?\.(snssdk|amemv)\.com\/api\/ad\/ - reject
     - ^https?:\/\/.+?\.58cdn\.com\.cn\/brandads\/ - reject
     - ^https?:\/\/.+?\.atm\.youku\.com - reject
     - ^https?:\/\/.+?\.beacon\.qq\.com - reject
@@ -547,8 +543,6 @@ http:
     - ^https?:\/\/.+?\.l\.qq\.com - reject
     - ^https?:\/\/.+?\.ott\.cibntv\.net\/[\w\/-]+.mp4\?sid= - reject
     - ^https?:\/\/.+?\.pstatp\.com\/img\/ad - reject
-    - ^https?:\/\/.+?\.snssdk\.com\/motor\/operation\/activity\/display\/config\/V2\/
-      - reject
     - ^https?:\/\/.+?\.tc\.qq\.com\/.+?_p20\d_ - reject
     - ^https?:\/\/.+?\.tc\.qq\.com\/.+?p20\d\.1\.mp4\? - reject
     - ^https?:\/\/.+?\/variety.tc.qq.com\/ - reject
@@ -570,9 +564,6 @@ http:
     - ^https?:\/\/789\.kakamobi\.cn\/.+?adver - reject
     - ^https?:\/\/7n\.bczcdn\.com\/launchad\/ - reject
     - ^https?:\/\/[\s\S]*\.baidu\.com/.*?ad[xs]\.php - reject
-    - ^https?:\/\/[\s\S]*\.snssdk\.com\/api\/ad\/ - reject
-    - ^https?:\/\/[\w-]+\.amemv\.com\/aweme\/v\d\/ad\/ - reject
-    - ^https?:\/\/[\w-]+\.snssdk\.com\/.+_ad\/ - reject
     - ^https?:\/\/[^bbs].tianya\.cn - reject
     - ^https?:\/\/\w+?\.ximalaya\.com\/api\/v\d\/adRealTime - reject
     - ^https?:\/\/\w+\.beacon\.qq\.com - reject
@@ -739,11 +730,6 @@ http:
     - ^https?:\/\/ast\.api\.moji\.com\/assist\/ad\/moji\/stat - reject
     - ^https?:\/\/atrace\.chelaile\.net\.cn\/adpub\/ - reject
     - ^https?:\/\/atrace\.chelaile\.net\.cn\/exhibit\?&adv_image - reject
-    - ^https?:\/\/aweme\.snssdk\.com\/aweme\/v1\/aweme\/stats\/ - reject
-    - ^https?:\/\/aweme\.snssdk\.com\/aweme\/v1\/device\/update\/ - reject
-    - ^https?:\/\/aweme\.snssdk\.com\/aweme\/v1\/screen\/ad\/ - reject
-    - ^https?:\/\/aweme\.snssdk\.com\/service\/1\/app_logout\/ - reject
-    - ^https?:\/\/aweme\.snssdk\.com\/service\/2\/app_log - reject
     - ^https?:\/\/b-api\.ins\.miaopai\.com\/\d\/ad/ - reject
     - ^https?:\/\/baichuan\.baidu\.com\/rs\/adpmobile\/launch - reject
     - ^https?:\/\/bank\.wo\.cn\/v9\/getstartpage - reject
@@ -874,7 +860,6 @@ http:
     - ^https?:\/\/fm\.fenqile\.com\/routev2\/other\/startImg\.json - reject
     - ^https?:\/\/foodie-api\.yiruikecorp\.com\/v\d\/(banner|notice)\/overview - reject
     - ^https?:\/\/free\.sinaimg\.cn\/u1\.img\.mobile\.sina\.cn - reject
-    - ^https?:\/\/frontier\.snssdk\.com\/ - reject
     - ^https?:\/\/fuss10\.elemecdn\.com\/.+?\.mp4 - reject
     - ^https?:\/\/fuss10\.elemecdn\.com\/.+?\/w\/640\/h\/\d{3,4} - reject
     - ^https?:\/\/g1\.163\.com\/madfeedback - reject
