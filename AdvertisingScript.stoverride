@@ -1,6 +1,6 @@
 # modify from https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Surge/AdvertisingScript/AdvertisingScript_Classical.sgmodule
 name: 脚本去广告
-desc: 最后更新时间 2022-03-04 16:25:59
+desc: 最后更新时间 2022-05-18 23:27:53
 
 http:
   mitm:
